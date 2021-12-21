@@ -1,0 +1,61 @@
+{
+    "name": "Portal de Belén",
+    "author": "Javier Alonso Díaz",
+    "version": "1.0.0",
+    "outputs": [
+        {
+            "id": 0,
+            "name": "LED RGB",
+            "description": "LED RGB con tres pines",
+            "type": "led_rgb",
+            "pin": ["D0", "D1", "D2"],
+            "initialValue": ["0", "0", "0"]
+        }
+    ],
+    "cycles": [
+        {
+            "id": "sunrise",
+            "name": "Sunrise",
+            "lenght": 5000,
+            "triggers":[
+                {
+                    "outputId": 0,
+                    "setValue": ["25", "25", "25"]
+                }
+            ]
+        },
+        {
+            "id": "day",
+            "name": "Day",
+            "lenght": 15000,
+            "triggers":[
+                {
+                    "outputId": 0,
+                    "setValue": ["100", "100", "100"]
+                }
+            ]
+        },
+        {
+            "id": "sunset",
+            "name": "Sunset",
+            "lenght": 5000,
+            "triggers":[
+                {
+                    "outputId": 0,
+                    "setValue": ["170", "170", "170"]
+                }
+            ]
+        },
+        {
+            "id": "night",
+            "name": "Night",
+            "lenght": 10000,
+            "triggers":[
+                {
+                    "outputId": 0,
+                    "setValue": ["255", "255", "255"]
+                }
+            ]
+        }
+    ]
+}
