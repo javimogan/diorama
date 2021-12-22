@@ -22,7 +22,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["25", "25", "25"]
+                    "setValue": ["0", "50", "5"]
                 }
             ]
         },
@@ -33,7 +33,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["100", "100", "100"]
+                    "setValue": ["255", "255", "255"]
                 }
             ]
         },
@@ -44,7 +44,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["170", "170", "170"]
+                    "setValue": ["0", "25", "0"]
                 }
             ]
         },
@@ -55,7 +55,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["255", "255", "255"]
+                    "setValue": ["0", "0", "0"]
                 }
             ]
         }
