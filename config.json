@@ -9,7 +9,7 @@
             "description": "LED RGB con tres pines",
             "type": "led_rgb",
             "pin": ["D0", "D1", "D2"],
-            "initialValue": ["255", "50", "125"]
+            "initialValue": ["255", "50", "25"]
         }
     ],
     "cycles": [
