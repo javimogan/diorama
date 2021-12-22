@@ -13,6 +13,7 @@
             "initialValue": ["0", "200", "0"]
         }
     ],
+    "repeat_cycles": true,
     "cycles": [
         {
             "id": "sunrise",
