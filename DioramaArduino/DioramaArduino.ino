@@ -21,7 +21,7 @@ TCFM tcfm;
 //TODO: Check size of DynamicJsonDocument
 DynamicJsonDocument diorama_config(2048);
 //TODO: String to pins
-static const uint8_t ESPdatapins[] = {D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10};
+//static const uint8_t ESPdatapins[] = {D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10};
 
 void setup()
 {
@@ -132,7 +132,7 @@ bool getJSONFromURL(char *_url, DynamicJsonDocument &_output)
   http.end();
   return _response;
 }
-byte string2Pin(String _pin)
+/*byte string2Pin(String _pin)
 {
   //check if it's a valid pin name
   if (_pin.length() >= 2 && _pin[0] == 'D')
@@ -141,4 +141,4 @@ byte string2Pin(String _pin)
     uint8_t pin = ESPdatapins[_pin.substring(1).toInt()];
     return pin;
   }
-}
+}*/

@@ -4,37 +4,49 @@
   https://javimogan.com
 */
 #include "TCFM.h"
-#include <Arduino.h>
 
 void TCFM::begin()
 {
   _isLoad = false;
 }
+
+uint8_t TCFM::ESPdatapins[] = {D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10};
+
 boolean TCFM::setConfig(DynamicJsonDocument _config)
 {
   name = _config["name"].as<String>();
   author = _config["author"].as<String>();
   version = _config["version"].as<String>();
   repeat_cycles = _config["repeat_cycles"].as<bool>();
+  outputs = _config["outputs"].as<JsonArray>();
+  cycles = _config["cycles"].as<JsonArray>();
+  
+  initializeOutputs();
+  //TODO: Check response
+  return true;
+}
 
- 
-  /*for (JsonObject _out : diorama_config["outputs"].as<JsonArray>())
+void TCFM::initializeOutputs()
+{
+  for (JsonObject _output : outputs)
   {
-    JsonArray _pins = _out["pin"].as<JsonArray>();
-    JsonArray _initialValue = _out["initialValue"].as<JsonArray>();
+    Serial.println(String(_output["id"].as<int>()));
+    JsonArray _pins = _output["pin"].as<JsonArray>();
+    JsonArray _initialValue = _output["initialValue"].as<JsonArray>();
+    String _output_type = _output["output_type"].as<String>();
     for (int i = 0; i < _pins.size(); i++)
     {
       pinMode(string2Pin(_pins[i].as<String>()), OUTPUT);
-      if (_out["output_type"].as<String>() == "analog")
+      if (_output_type == "analog")
       {
         analogWrite(string2Pin(_pins[i].as<String>()), _initialValue[i].as<int>());
       }
-      else if (_out["output_type"].as<String>() == "digital")
+      else if (_output_type == "digital")
       {
+        digitalWrite(string2Pin(_pins[i].as<String>()), _initialValue[i].as<int>());
       }
-    }*/
-  //TODO: Check response
-  return true;
+    }
+  }
 }
 void TCFM::run()
 {
@@ -66,4 +78,17 @@ String TCFM::getAuthor()
 String TCFM::getVersion()
 {
   return version;
+}
+TCFM::~TCFM()
+{
+}
+byte TCFM::string2Pin(String _pin)
+{
+  //check if it's a valid pin name
+  if (_pin.length() >= 2 && _pin[0] == 'D')
+  {
+    //skip the first character (D) and convert it to an integer
+    uint8_t pin = ESPdatapins[_pin.substring(1).toInt()];
+    return pin;
+  }
 }
