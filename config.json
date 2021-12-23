@@ -9,7 +9,7 @@
             "description": "LED RGB con tres pines",
             "type": "led_rgb",
             "output_type": "analog",
-            "pin": ["D0", "D1", "D2"],
+            "pin": ["D2", "D0", "D1"],
             "initialValue": ["0", "200", "0"]
         }
     ],
