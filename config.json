@@ -18,7 +18,7 @@
         {
             "id": "sunrise",
             "name": "Sunrise",
-            "lenght": 5000,
+            "length": 5000,
             "triggers":[
                 {
                     "outputId": 0,
@@ -29,7 +29,7 @@
         {
             "id": "day",
             "name": "Day",
-            "lenght": 15000,
+            "length": 15000,
             "triggers":[
                 {
                     "outputId": 0,
@@ -40,7 +40,7 @@
         {
             "id": "sunset",
             "name": "Sunset",
-            "lenght": 5000,
+            "length": 5000,
             "triggers":[
                 {
                     "outputId": 0,
@@ -51,7 +51,7 @@
         {
             "id": "night",
             "name": "Night",
-            "lenght": 10000,
+            "length": 10000,
             "triggers":[
                 {
                     "outputId": 0,
