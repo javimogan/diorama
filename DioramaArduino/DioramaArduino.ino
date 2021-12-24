@@ -38,6 +38,7 @@ void setup()
   if (updateConfig())
   {
     tcfm.setConfig(diorama_config);
+    tcfm.run();
   }
   else
   {
@@ -47,7 +48,7 @@ void setup()
 
 void loop()
 {
-  tcfm.run();
+  //tcfm.run();
   //core(diorama_config);
 }
 

@@ -19,7 +19,7 @@ boolean TCFM::setConfig(DynamicJsonDocument _config)
   version = _config["version"].as<String>();
   repeat_cycles = _config["repeat_cycles"].as<bool>();
   //outputs = _config["outputs"].as<JsonArray>();
-  //cycles = _config["cycles"].as<JsonArray>();
+  cycles = _config["cycles"].as<JsonArray>();
 
   initializeOutputs(_config["outputs"].as<JsonArray>());
   //TODO: Check response
@@ -32,13 +32,16 @@ void TCFM::initializeOutputs(JsonArray _outputs)
   int i = 0;
   for (JsonObject _output : _outputs)
   {
-    outputs[i] = new TCFM_Output(_output["id"].as<int>(),
-                               _output["name"].as<String>(),
-                               _output["description"].as<String>(),
-                               _output["type"].as<String>(),
-                               _output["output_type"].as<String>(),
-                               _output["pin"].as<JsonArray>(),
-                               _output["initialValue"].as<JsonArray>());
+    if (_output["type"] == "led_strip")
+    {
+      outputs[i] = new TCFM_Output(_output["id"].as<int>(),
+                                   _output["name"].as<String>(),
+                                   _output["description"].as<String>(),
+                                   _output["type"].as<String>(),
+                                   _output["output_type"].as<String>(),
+                                   _output["pin"].as<JsonArray>(),
+                                   _output["initialValue"].as<JsonArray>());
+    }
     i++;
     //outputs[i].setValue( _output["initialValue"].as<JsonArray>());
     /*JsonArray _pins = _output["pin"].as<JsonArray>();
@@ -57,12 +60,35 @@ void TCFM::initializeOutputs(JsonArray _outputs)
       }
     }*/
   }
+  _isLoad = true;
 }
 void TCFM::run()
 {
   if (_isLoad)
   {
-    Serial.println("RUN is working");
+    JsonObject current_cycle;
+
+    for (int current_cycle_index = 0; current_cycle_index < cycles.size(); current_cycle_index++)
+    {
+      current_cycle = cycles[current_cycle_index].as<JsonObject>();
+
+      for (JsonObject _trigger : current_cycle["triggers"].as<JsonArray>())
+      {
+        Serial.println("T " + current_cycle_index);
+        outputs[0]->setValue( _trigger["setValue"].as<JsonArray>());
+        //JsonObject _out = outputs[_trigger["outputId"]];
+
+        //setOutput(false, _out["type"], _out["output_type"], _out["pin"].as<JsonArray>(), _trigger["setValue"].as<JsonArray>());
+      }
+
+      delay(current_cycle["lenght"]);
+
+      //Repeat all cycles?
+      if (current_cycle_index == cycles.size() - 1 && repeat_cycles)
+      {
+        current_cycle_index = -1;
+      }
+    }
   }
   else
   {

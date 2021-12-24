@@ -7,6 +7,7 @@
 #ifndef TCFM_Output_h
 #define TCFM_Output_h
 #include <ArduinoJson.h>
+#include <Adafruit_NeoPixel.h>
 
 class TCFM_Output
 {
@@ -19,7 +20,7 @@ private:
     JsonArray pin;
     JsonArray initialValue;
     JsonArray currentValue;
-
+    Adafruit_NeoPixel pixels;
 public:
     TCFM_Output();
     TCFM_Output(int _id, String _name, String _description, String _type, String _output_type, JsonArray _pin, JsonArray _initialValue);//{begin(_id, _name, _description, _type, _output_type, _pin, _initialValue);}

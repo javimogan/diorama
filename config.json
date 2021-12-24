@@ -10,15 +10,6 @@
             "type": "led_strip",
             "pin": ["D1"],
             "initialValue": ["50", "200", "0"]
-        },
-        {
-            "id": 1,
-            "name": "LED RGB",
-            "description": "LED RGB con tres pines",
-            "type": "led_rgb",
-            "output_type": "analog",
-            "pin": ["D2", "D3", "D4"],
-            "initialValue": ["0", "200", "0"]
         }
     ],
     "repeat_cycles": true,

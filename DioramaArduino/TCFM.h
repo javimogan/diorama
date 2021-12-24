@@ -21,7 +21,7 @@ private:
     bool repeat_cycles;
 
     TCFM_Output *outputs[MAX_OUTPUTS];
-    //JsonArray *cycles;
+    JsonArray cycles;
 
     static uint8_t ESPdatapins[11];
     static byte string2Pin(String _pin);
