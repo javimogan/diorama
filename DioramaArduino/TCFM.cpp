@@ -18,20 +18,30 @@ boolean TCFM::setConfig(DynamicJsonDocument _config)
   author = _config["author"].as<String>();
   version = _config["version"].as<String>();
   repeat_cycles = _config["repeat_cycles"].as<bool>();
-  outputs = _config["outputs"].as<JsonArray>();
-  cycles = _config["cycles"].as<JsonArray>();
-  
-  initializeOutputs();
+  //outputs = _config["outputs"].as<JsonArray>();
+  //cycles = _config["cycles"].as<JsonArray>();
+
+  initializeOutputs(_config["outputs"].as<JsonArray>());
   //TODO: Check response
   return true;
 }
 
-void TCFM::initializeOutputs()
+void TCFM::initializeOutputs(JsonArray _outputs)
 {
-  for (JsonObject _output : outputs)
+
+  int i = 0;
+  for (JsonObject _output : _outputs)
   {
-    Serial.println(String(_output["id"].as<int>()));
-    JsonArray _pins = _output["pin"].as<JsonArray>();
+    outputs[i] = new TCFM_Output(_output["id"].as<int>(),
+                               _output["name"].as<String>(),
+                               _output["description"].as<String>(),
+                               _output["type"].as<String>(),
+                               _output["output_type"].as<String>(),
+                               _output["pin"].as<JsonArray>(),
+                               _output["initialValue"].as<JsonArray>());
+    i++;
+    //outputs[i].setValue( _output["initialValue"].as<JsonArray>());
+    /*JsonArray _pins = _output["pin"].as<JsonArray>();
     JsonArray _initialValue = _output["initialValue"].as<JsonArray>();
     String _output_type = _output["output_type"].as<String>();
     for (int i = 0; i < _pins.size(); i++)
@@ -45,7 +55,7 @@ void TCFM::initializeOutputs()
       {
         digitalWrite(string2Pin(_pins[i].as<String>()), _initialValue[i].as<int>());
       }
-    }
+    }*/
   }
 }
 void TCFM::run()
@@ -56,7 +66,7 @@ void TCFM::run()
   }
   else
   {
-    Serial.println("Load before");
+    //Serial.println("Load before");
   }
 }
 bool TCFM::isLoad()
@@ -81,6 +91,7 @@ String TCFM::getVersion()
 }
 TCFM::~TCFM()
 {
+  //TODO: REmove Outputs
 }
 byte TCFM::string2Pin(String _pin)
 {

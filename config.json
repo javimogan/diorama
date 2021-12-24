@@ -5,11 +5,19 @@
     "outputs": [
         {
             "id": 0,
+            "name": "LED STRIP",
+            "description": "LED STRIP RGB",
+            "type": "led_strip",
+            "pin": ["D1"],
+            "initialValue": ["50", "200", "0"]
+        },
+        {
+            "id": 1,
             "name": "LED RGB",
             "description": "LED RGB con tres pines",
             "type": "led_rgb",
             "output_type": "analog",
-            "pin": ["D2", "D0", "D1"],
+            "pin": ["D2", "D3", "D4"],
             "initialValue": ["0", "200", "0"]
         }
     ],
@@ -22,7 +30,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["0", "50", "5"]
+                    "setValue": ["247", "205", "93"]
                 }
             ]
         },
@@ -33,7 +41,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["255", "255", "255"]
+                    "setValue": ["255", "165", "0"]
                 }
             ]
         },
@@ -44,7 +52,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["0", "25", "0"]
+                    "setValue": ["250", "214", "165"]
                 }
             ]
         },
@@ -55,7 +63,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["0", "0", "0"]
+                    "setValue": ["132", "145", "157"]
                 }
             ]
         }
