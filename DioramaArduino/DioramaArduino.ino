@@ -38,23 +38,6 @@ void setup()
   if (updateConfig())
   {
     tcfm.setConfig(diorama_config);
-    /*Serial.println(diorama_config["name"].as<String>());
-    for (JsonObject _out : diorama_config["outputs"].as<JsonArray>())
-    {
-      JsonArray _pins = _out["pin"].as<JsonArray>();
-      JsonArray _initialValue = _out["initialValue"].as<JsonArray>();
-      for (int i = 0; i < _pins.size(); i++)
-      {
-        pinMode(string2Pin(_pins[i].as<String>()), OUTPUT);
-        if (_out["output_type"].as<String>() == "analog")
-        {
-          analogWrite(string2Pin(_pins[i].as<String>()), _initialValue[i].as<int>());
-        }
-        else if (_out["output_type"].as<String>() == "digital")
-        {
-        }
-      }
-    }*/
   }
   else
   {
@@ -64,6 +47,7 @@ void setup()
 
 void loop()
 {
+  tcfm.run();
   //core(diorama_config);
 }
 

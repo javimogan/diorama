@@ -8,9 +8,9 @@
             "name": "LED RGB",
             "description": "LED RGB con tres pines",
             "type": "led_rgb",
-            "output_type": "digital",
-            "pin": ["D7"],
-            "initialValue": ["0"]
+            "output_type": "analog",
+            "pin": ["D2", "D0", "D1"],
+            "initialValue": ["0", "200", "0"]
         }
     ],
     "repeat_cycles": true,
@@ -22,7 +22,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["0"]
+                    "setValue": ["0", "50", "5"]
                 }
             ]
         },
@@ -33,7 +33,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["1"]
+                    "setValue": ["255", "255", "255"]
                 }
             ]
         },
@@ -44,7 +44,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["0"]
+                    "setValue": ["0", "25", "0"]
                 }
             ]
         },
@@ -55,7 +55,7 @@
             "triggers":[
                 {
                     "outputId": 0,
-                    "setValue": ["1"]
+                    "setValue": ["0", "0", "0"]
                 }
             ]
         }
