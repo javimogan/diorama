@@ -28,6 +28,7 @@ bool TCFM_Output::initialize()
   {
     this->setValue(this->currentValue);
   }
+  return true;
 }
 bool TCFM_Output::setValue(JsonArray _values)
 {
@@ -37,7 +38,8 @@ bool TCFM_Output::setValue(JsonArray _values)
 
       pixels.setPixelColor(i, pixels.Color(this->currentValue[0].as<int>(), this->currentValue[1].as<int>(), this->currentValue[2].as<int>())); // Brillo moderado en rojo
 
-      pixels.show(); // Mostramos y actualizamos el color del pixel de nuestra cinta led RGB
 
     }
+      pixels.show(); // Mostramos y actualizamos el color del pixel de nuestra cinta led RGB
+    return true;
 }

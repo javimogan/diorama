@@ -32,8 +32,10 @@ void TCFM::initializeOutputs(JsonArray _outputs)
   int i = 0;
   for (JsonObject _output : _outputs)
   {
+    Serial.println("output " + String(i));
     if (_output["type"] == "led_strip")
     {
+      Serial.println("creamos Output " + _output["name"].as<String>());
       outputs[i] = new TCFM_Output(_output["id"].as<int>(),
                                    _output["name"].as<String>(),
                                    _output["description"].as<String>(),
@@ -67,14 +69,16 @@ void TCFM::run()
   if (_isLoad)
   {
     JsonObject current_cycle;
-
+    Serial.println("Size viene debajo");
+      Serial.println("Size: " + cycles.size());
     for (int current_cycle_index = 0; current_cycle_index < cycles.size(); current_cycle_index++)
     {
-      current_cycle = cycles[current_cycle_index].as<JsonObject>();
-
+      Serial.println("index: " + current_cycle_index);
+      current_cycle = this->cycles[current_cycle_index].as<JsonObject>();
+      Serial.println("id: " + current_cycle["id"].as<String>());
+      Serial.println("name: " + current_cycle["name"].as<String>());
       for (JsonObject _trigger : current_cycle["triggers"].as<JsonArray>())
       {
-        Serial.println("T " + current_cycle_index);
         outputs[0]->setValue( _trigger["setValue"].as<JsonArray>());
         //JsonObject _out = outputs[_trigger["outputId"]];
 
